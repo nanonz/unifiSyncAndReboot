@@ -3,7 +3,7 @@
 IP=192.168.1.
 START_IP=10
 END_IP=240
-IPT=192.168.1.250
+IPTIME=192.168.1.250
 LOG=unifi.log
 DATE=$(date +%Y-%m-%d" "%R:%S)
 SEQ=$(seq $START_IP $END_IP)
@@ -13,9 +13,10 @@ SYNCANDREBOOT () {
 for i in $ii
 do
  echo "$DATE Sync date & time to UniFi access point at $IP$i Start..." >> $LOG
- ssh -o "StrictHostKeyChecking no" admins@$IP$i ntpclient -t -s -h $IPT -i 2 -c 2 > /dev/null 2>&1
+ ssh -o "StrictHostKeyChecking no" admins@$IP$i ntpclient -t -s -h $IPTIME -i 2 -c 2 > /dev/null 2>&1
  echo "$DATE Sync date & time to UniFi access point at $IP$i Successfully..." >> $LOG
- #sleep 1 echo "Reboot UniFi access point at $IP$i ..." ssh -o "StrictHostKeyChecking no" admins@$IP$i reboot
+ sleep 1 
+ echo "Reboot UniFi access point at $IP$i ..." ssh -o "StrictHostKeyChecking no" admins@$IP$i reboot
 done
 }
 
