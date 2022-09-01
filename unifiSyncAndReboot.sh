@@ -16,7 +16,8 @@ do
  ssh -o "StrictHostKeyChecking no" admins@$IP$i ntpclient -t -s -h $IPTIME -i 2 -c 2 > /dev/null 2>&1
  echo "$DATE Sync date & time to UniFi access point at $IP$i Successfully..." >> $LOG
  sleep 1 
- echo "Reboot UniFi access point at $IP$i ..." ssh -o "StrictHostKeyChecking no" admins@$IP$i reboot
+ echo "Reboot UniFi access point at $IP$i ..." 
+ ssh -o "StrictHostKeyChecking no" admins@$IP$i reboot
 done
 }
 
